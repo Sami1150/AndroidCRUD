@@ -92,17 +92,7 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
     }
 
-    public void  deleteStudent(int StudentID){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String StuID=Integer.toString(StudentID);
-        Cursor cursor=db.rawQuery("SELECT * FROM " + STUDENT_TABLE +" WHERE StudentID=?",new String[]{StuID});
 
-        if(cursor.getCount()>0){
-            long result=db.delete(STUDENT_TABLE,"StudentID=?",new String[]{StuID});
-        }
-        cursor.close();
-
-    }
 
     public ArrayList<StudentModel> getAllStudents() {
 
