@@ -55,6 +55,42 @@ public class DBHelper extends SQLiteOpenHelper {
         //if (insert == -1) { return false; }
         //else{return true;}
     }
+    public boolean FindStudent(int StudentID)
+    {
+        SQLiteDatabase db=this.getReadableDatabase();
+
+        String StuID=Integer.toString(StudentID);
+        Cursor cursor=db.rawQuery("SELECT * FROM " + STUDENT_TABLE +" WHERE StudentID=?",new String[]{StuID});
+
+        if(cursor.getCount()>0){
+            //Toast.makeText(DBHelper.this,"No Student found",Toast.LENGTH_LONG).show();
+
+            cursor.close();
+            return true;
+        }
+        else
+        {
+            cursor.close();
+            //Toast.makeText(,"No Student found",Toast.LENGTH_LONG).show();
+            return false;
+        }
+    }
+    public void updateStudent(StudentModel stu,int StudentID)
+    {
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues cv=new ContentValues();
+        cv.put(STUDENT_NAME, stu.getName());
+        cv.put(STUDENT_ROLL, stu.getRollNmber());
+        cv.put(STUDENT_ENROLL, stu.isEnroll());
+
+        String StuID=Integer.toString(StudentID);
+        Cursor cursor=db.rawQuery("SELECT * FROM " + STUDENT_TABLE +" WHERE StudentID=?",new String[]{StuID});
+
+        if(cursor.getCount()>0){
+            long result=db.update(STUDENT_TABLE,cv,"StudentID=?",new String[]{StuID});
+        }
+        cursor.close();
+    }
     public ArrayList<StudentModel> getAllStudents() {
 
         SQLiteDatabase db = this.getReadableDatabase();
