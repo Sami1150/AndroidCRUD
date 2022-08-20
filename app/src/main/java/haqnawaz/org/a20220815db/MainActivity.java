@@ -16,7 +16,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button buttonAdd, buttonViewAll, buttonUpdate;
+    Button buttonAdd, buttonViewAll, buttonDelete,buttonUpdate;
     EditText editName, editRollNumber;
     Switch switchIsActive;
     ListView listViewStudent;
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         editRollNumber = findViewById(R.id.editTextRollNumberDel);
         switchIsActive = findViewById(R.id.switchStudent);
         listViewStudent = findViewById(R.id.listViewStudent);
+        buttonDelete=findViewById(R.id.buttonDel);
         buttonUpdate=findViewById(R.id.buttonUpdateMain);
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +63,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        
+        buttonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(MainActivity.this, del.class));
+            }
+        });
+
         buttonUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
